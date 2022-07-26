@@ -1,0 +1,49 @@
+﻿@model IEnumerable<TaskManager.Models.TaskModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Lista zadań</h1>
+
+<p>
+    <a asp-action="Create">Dodaj zadanie</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+
+
+            <td>
+                @Html.ActionLink("Gotowe", "Done", new { id = item.TaskId }) |
+
+                @Html.ActionLink("Edytuj", "Edit", new { id = item.TaskId }) |
+                @Html.ActionLink("Szczegóły", "Details", new { id = item.TaskId }) |
+                @Html.ActionLink("Usuń", "Delete", new { id = item.TaskId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
